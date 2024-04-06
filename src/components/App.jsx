@@ -4,9 +4,15 @@ import './App.scss';
 
 export class App extends Component {
   state = {
-    contacts: [],
+    contacts: [
+      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+    ],
     name: '',
     number: '',
+    filter: '',
   };
 
   handleSubmit = e => {
@@ -25,8 +31,15 @@ export class App extends Component {
     this.setState({ [name]: e.target.value });
   };
 
+  filteredContacts = contacts => {
+    const { filter } = this.state;
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase())
+    );
+  };
+
   render() {
-    const { name, number, contacts } = this.state;
+    const { name, number, contacts, filter } = this.state;
     return (
       <div className="container">
         <h1>Phonebook:</h1>
@@ -55,8 +68,15 @@ export class App extends Component {
         </form>
 
         <h2>Contacts:</h2>
+        <label htmlFor="filter"></label>
+        <input
+          type="text"
+          name="filter"
+          value={filter}
+          onChange={this.handleChange}
+        />
         <ul>
-          {contacts.map(contact => (
+          {this.filteredContacts(contacts).map(contact => (
             <li key={contact.id}>{`${contact.name}: ${contact.number}`}</li>
           ))}
         </ul>
