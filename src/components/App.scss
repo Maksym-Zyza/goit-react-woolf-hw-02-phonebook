@@ -1,0 +1,22 @@
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #212121;
+
+  h1 {
+    text-align: center;
+    font-size: 28px;
+  }
+
+  ul {
+    display: flex;
+    padding: 0;
+    list-style: none;
+    font-size: 20px;
+    li {
+      margin: 20px;
+    }
+  }
+}
