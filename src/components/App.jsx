@@ -6,26 +6,27 @@ export class App extends Component {
   state = {
     contacts: [],
     name: '',
+    number: '',
   };
 
   handleSubmit = e => {
     e.preventDefault();
-    const { value } = e.target.elements.name;
+    console.log(e.target.elements);
+    const { name, number } = this.state;
     this.setState(prev => ({
       ...prev,
-      contacts: [{ id: nanoid(), name: value }, ...prev.contacts],
+      contacts: [{ id: nanoid(), name, number }, ...prev.contacts],
     }));
-    this.setState({ name: '' });
+    this.setState({ name: '', number: '' });
   };
 
   handleChange = e => {
-    this.setState({ name: e.target.value });
+    const { name } = e.target;
+    this.setState({ [name]: e.target.value });
   };
 
   render() {
-    const { name, contacts } = this.state;
-    console.log(contacts);
-
+    const { name, number, contacts } = this.state;
     return (
       <div className="container">
         <h1>Phonebook:</h1>
@@ -40,13 +41,23 @@ export class App extends Component {
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
           />
+          <label htmlFor="number">Name</label>
+          <input
+            type="tel"
+            name="number"
+            value={number}
+            onChange={this.handleChange}
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            required
+          />
           <button type="submit">Add contact</button>
         </form>
 
         <h2>Contacts:</h2>
         <ul>
           {contacts.map(contact => (
-            <li key={contact.id}>{contact.name}</li>
+            <li key={contact.id}>{`${contact.name}: ${contact.number}`}</li>
           ))}
         </ul>
       </div>
