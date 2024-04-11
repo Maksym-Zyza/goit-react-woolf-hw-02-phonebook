@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #212121;
+  color: #484848;
 
   h1 {
     text-align: center;
@@ -14,27 +14,28 @@
     display: flex;
     flex-direction: column;
     padding: 20px;
-    border: 1px solid #212121;
+    border: 1px solid #484848;
     border-radius: 8px;
     input {
       margin: 10px 0;
       padding: 4px 10px;
       font-size: 16px;
-      border: 1px solid #212121;
+      border: 1px solid #484848;
       border-radius: 8px;
     }
     button {
       margin-top: 20px;
       padding: 10px;
-      background-color: #212121;
+      background-color: #484848;
       color: #fff;
       font-size: 16px;
       border: none;
       border-radius: 8px;
       cursor: pointer;
+      transition: background-color 0.5s ease;
 
       &:hover {
-        background-color: #424242;
+        background-color: #1e76da;
       }
     }
   }
@@ -51,6 +52,40 @@
       padding: 4px 12px;
       background-color: #f2f2f2;
       border-radius: 8px;
+    }
+  }
+}
+
+.filter {
+  position: relative;
+  margin-bottom: 12px;
+
+  input {
+    margin: 10px 0;
+    padding: 4px 10px;
+    padding-left: 32px;
+    min-width: 186px;
+    font-size: 16px;
+    border: 1px solid #484848;
+    border-radius: 8px;
+    transition: border 0.5s ease;
+  }
+
+  svg {
+    position: absolute;
+    left: 12px;
+    top: 24px;
+    transform: translateY(-50%);
+    fill: grey;
+    transition: fill 0.5s ease;
+  }
+
+  &:hover {
+    input {
+      border: 1px solid #1e76da;
+    }
+    svg {
+      fill: #1e76da;
     }
   }
 }
