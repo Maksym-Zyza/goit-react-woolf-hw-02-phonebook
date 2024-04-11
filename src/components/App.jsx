@@ -11,6 +11,7 @@ export class App extends Component {
     contacts: [...testData],
     filter: '',
   };
+
   createNewContact = (name, number) => {
     const isExist = this.state.contacts.find(
       el => el.name.toLowerCase() === name.toLowerCase()
@@ -20,7 +21,6 @@ export class App extends Component {
       return;
     }
     this.setState(prev => ({
-      ...prev,
       contacts: [{ id: nanoid(), name, number }, ...prev.contacts],
     }));
   };
@@ -39,7 +39,6 @@ export class App extends Component {
 
   deleteContact = id => {
     this.setState(prev => ({
-      ...prev,
       contacts: prev.contacts.filter(contact => contact.id !== id),
     }));
   };
